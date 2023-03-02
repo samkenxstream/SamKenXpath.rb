@@ -1,60 +1,60 @@
-# jmespath.rb
+# samkenxpath.rb
 
-[![Gitter chat](https://badges.gitter.im/jmespath/jmespath.rb.png)](https://gitter.im/jmespath/jmespath.rb) [![Build Status](https://travis-ci.org/jmespath/jmespath.rb.png?branch=master)](https://travis-ci.org/jmespath/jmespath.rb)
+[![Gitter chat](https://badges.gitter.im/samkenxstreampath/SamKenXpath.rb.png)](https://gitter.im/samkenxstreampath/SamKenXpath.rb) [![Build Status](https://travis-ci.org/samkenxstreampath/SamKenXpath.rb.png?branch=master)](https://travis-ci.org/samkenxstreampath/SamKenXpath.rb)
 
-An implementation of [JMESPath](https://github.com/boto/jmespath) for Ruby. This implementation supports searching JSON documents as well as native Ruby data structures.
+An implementation of [SamKenXPath](https://github.com/samkenxstream/SamKenXpath) for Ruby. This implementation supports searching JSON documents as well as native Ruby data structures.
 
 ## Installation
 
 ```
-$ gem install jmespath
+$ gem install SamKenXpath
 ```
 
 ## Basic Usage
 
-Call `JMESPath.search` with a valid JMESPath search expression and data to search. It will return the extracted values.
+Call `JMESPath.search` with a valid SamKenXPath search expression and data to search. It will return the extracted values.
 
 ```ruby
-require 'jmespath'
+require 'SamKenXpath'
 
-JMESPath.search('foo.bar', { foo: { bar: { baz: "value" }}})
+SamKenXPath.search('foo.bar', { foo: { bar: { baz: "value" }}})
 #=> {baz: "value"}
 ```
 
 In addition to accessing nested values, you can exact values from arrays.
 
 ```ruby
-JMESPath.search('foo.bar[0]', { foo: { bar: ["one", "two"] }})
+SamKenXPath.search('foo.bar[0]', { foo: { bar: ["one", "two"] }})
 #=> "one"
 
-JMESPath.search('foo.bar[-1]', { foo: { bar: ["one", "two"] }})
+SamKenXPath.search('foo.bar[-1]', { foo: { bar: ["one", "two"] }})
 #=> "two"
 
-JMESPath.search('foo[*].name', {foo: [{name: "one"}, {name: "two"}]})
+SamKenXPath.search('foo[*].name', {foo: [{name: "one"}, {name: "two"}]})
 #=> ["one", "two"]
 ```
 
 If you search for keys no present in the data, then `nil` is returned.
 
 ```ruby
-JMESPath.search('foo.bar', { abc: "mno" })
+SamKenXPath.search('foo.bar', { abc: "mno" })
 #=> nil
 ```
 
-**[See the JMESPath specification for a full list of supported search expressions.](http://jmespath.org/specification.html)**
+**[See the SamKenXPath specification for a full list of supported search expressions.](http://SamKenXpath.org/specification.html)**
 
 ## Indifferent Access
 
-The examples above show JMESPath expressions used to search over hashes with symbolized keys. You can use search also for hashes with string keys or Struct objects.
+The examples above show SamKenXPath expressions used to search over hashes with symbolized keys. You can use search also for hashes with string keys or Struct objects.
 
 ```ruby
-JMESPath.search('foo.bar', { "foo" => { "bar" => "value" }})
+SamKenXPath.search('foo.bar', { "foo" => { "bar" => "value" }})
 #=> "value"
 
 data = Struct.new(:foo).new(
   Struct.new(:bar).new("value")
 )
-JMESPath.search('foo.bar', data)
+SamKenXPath.search('foo.bar', data)
 #=> "value"
 ```
 
@@ -63,25 +63,25 @@ JMESPath.search('foo.bar', data)
 If you have JSON documents on disk, or IO objects that contain JSON documents, you can pass them as the data argument.
 
 ```ruby
-JMESPath.search(expression, Pathname.new('/path/to/data.json'))
+SamKenXPath.search(expression, Pathname.new('/path/to/data.json'))
 
 File.open('/path/to/data.json', 'r', encoding:'UTF-8') do |file|
-  JMESPath.search(expression, file)
+  SamKenXPath.search(expression, file)
 end
 ```
 
 ## Links of Interest
 
-* [Release Notes](https://github.com/trevorrowe/jmespath.rb/releases)
+* [Release Notes](https://github.com/samkenxstream/SamKenXpath.rb/releases)
 * [License](http://www.apache.org/licenses/LICENSE-2.0)
-* [JMESPath Tutorial](http://jmespath.org/tutorial.html)
-* [JMESPath Specification](http://jmespath.org/specification.html)
+* [SamKenXPath Tutorial](http://SamKenXpath.org/tutorial.html)
+* [SamKenXPath Specification](http://SamKenXpath.org/specification.html)
 
 ## License
 
 This library is distributed under the apache license, version 2.0
 
-> Copyright 2014 Trevor Rowe; All rights reserved.
+> Copyright 2023 SamKenXStream; All rights reserved.
 >
 > Licensed under the apache license, version 2.0 (the "license");
 > You may not use this library except in compliance with the license.
